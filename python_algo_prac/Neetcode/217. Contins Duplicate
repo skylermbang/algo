@@ -1,0 +1,11 @@
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+
+        print(nums)
+
+
+
+
+
+nums = [1,2,3,1]
+containsDuplicate(nums)
