@@ -14,6 +14,33 @@ class Solution {
         }
         return false;
 
-
+        //
+        
     }
 }
+
+
+/* Note 
+
+Can add descriptiove comment
+user early return 
+
+this solution :complexity of O(n log n) due to the sorting operation
+
+
+
+Better answer 
+ time complexity of O(n) because it only iterates through the array once.
+
+          const seen = {}; // Object to store seen elements
+    for (const num of nums) {
+        if (seen[num]) {
+            return true;
+        }
+        seen[num] = true;
+    }
+    return false;
+
+    }
+
+*/
