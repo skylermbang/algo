@@ -21,4 +21,52 @@ class Solution {
 
  O(n log n), because the sort() function typically has a time complexity of O(n log n).
 
+
+
+
+
+// to array
+        let s2 = s.split("").sort();
+        let t2 = t.split("").sort();
+        // initializing objects
+        let s3 = {};
+        let t3 = {};
+        // put if the char is the object 
+        s2.forEach(i => {
+            if (s3[i] === undefined) {
+                s3[i] = 1; 
+            } else {
+                s3[i] = s3[i] + 1; 
+            }
+        });
+
+        t2.forEach(i => {
+            if (t3[i] === undefined) {
+                t3[i] = 1; 
+            } else {
+                t3[i] = t3[i] + 1; 
+            }
+        });
+
+        // Comapre two object
+        function compareObjects(obj1, obj2) {
+            const keys1 = Object.keys(obj1);
+            const keys2 = Object.keys(obj2);
+            
+            if (keys1.length !== keys2.length) {
+                return false;
+            }
+            
+            for (let key of keys1) {
+                if (obj1[key] !== obj2[key]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Compare s3 and t3 objects
+        return(compareObjects(s3, t3))
+
+        complexity of O(n) 
 */

@@ -1,0 +1,35 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+    twoSum(nums, target) {
+
+        //create answer array
+        let answer =[]
+
+        // nested loop to get i and j 
+        for (let i = 0; i < nums.length; i++) {
+            for (let j = i+1; j < nums.length; j++) {
+              console.log(i,j)
+
+              if(nums[i]+nums[j]=== target){
+                answer.push(i)
+                answer.push(j)
+                return (answer)
+              }
+            }
+        }
+
+    }
+
+
+
+}
+
+/*
+Time compexity :  O(n^2)
+
+if we can use one loop, maybe with map , it will be faster
+*/
