@@ -1,0 +1,82 @@
+class Solution {
+    /**
+     * @param {string[]} strs
+     * @return {string[][]}
+     */
+    groupAnagrams(strs) {
+        // Create a map to store the frequency objects for each string
+        let output = [];
+        
+        // Step 1: Create frequency objects for each string and store them in the output array
+        for (let i = 0; i < strs.length; i++) {
+            let result = {};
+            for (let j = 0; j < strs[i].length; j++) {
+                let ch = strs[i].charAt(j);
+                if (!result[ch]) {
+                    result[ch] = 1;
+                } else {
+                    result[ch] += 1;
+                }
+            }
+            output.push({ obj: result, index: i });
+        }
+
+        // Function to compare two objects
+        function compare(object1, object2) {
+            const keys1 = Object.keys(object1);
+            const keys2 = Object.keys(object2);
+
+            if (keys1.length !== keys2.length) {
+                return false;
+            }
+
+            for (let key of keys1) {
+                if (object1[key] !== object2[key]) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // Step 2: Group anagrams by comparing objects
+        let groupedResult = {};
+        
+        output.forEach(item => {
+            let length = Object.keys(item.obj).length;
+            if (!groupedResult[length]) {
+                groupedResult[length] = [];
+            }
+            groupedResult[length].push(item);            
+        });
+
+        let realResult = [];
+
+        for (const v in groupedResult) {
+            let groups = [];
+            let used = new Array(groupedResult[v].length).fill(false);
+            
+            for (let a = 0; a < groupedResult[v].length; a++) {
+                if (used[a]) continue;
+                let group = [strs[groupedResult[v][a].index]];
+                used[a] = true;
+                
+                for (let b = a + 1; b < groupedResult[v].length; b++) {
+                    if (!used[b] && compare(groupedResult[v][a].obj, groupedResult[v][b].obj)) {
+                        group.push(strs[groupedResult[v][b].index]);
+                        used[b] = true;
+                    }
+                }
+                groups.push(group);
+            }
+
+            realResult = realResult.concat(groups);
+        }
+        
+        return realResult;
+    }
+}
+
+//bad answer :
+// bad nested comparison that result in O(n^2 * k )
+// this can be reduced by using hash map to group anagrams. 
