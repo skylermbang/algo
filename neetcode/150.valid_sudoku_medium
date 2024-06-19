@@ -1,0 +1,110 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+    /**
+     * @param {character[][]} board
+     * @return {boolean}
+     */
+    isValidSudoku(board) {
+        let duplicatedStatus = true;
+        let column = {};
+
+        // Initialize the column object with empty arrays
+        for (let i = 0; i < board.length; i++) {
+            column[i] = [];
+        }
+
+        // Convert to column
+        board.forEach((line) => {
+            for (let i = 0; i < line.length; i++) {
+                column[i].push(line[i]);
+            }
+        });
+
+        // Checking columns
+        for (let j = 0; j < board.length; j++) {
+            duplicatedStatus = checkDup(column[j]);
+            // Missing early return if duplicates are found
+        }
+
+        // Checking rows
+        for (let i = 0; i < board.length; i++) {
+            duplicatedStatus = checkDup(board[i]);
+            // Missing early return if duplicates are found
+        }
+
+        // Checking the 3x3 sub-boxes
+        while (duplicatedStatus) { // Unnecessary while loop
+            for (let i = 0; i < board.length; i += 3) {
+                for (let j = 0; j < board.length; j += 3) {
+                    let subBox = [];
+                    for (let k = 0; k < 3; k++) {
+                        for (let l = 0; l < 3; l++) {
+                            subBox.push(board[i + k][j + l]);
+                        }
+                    }
+                    duplicatedStatus = checkDup(subBox);
+                    if (!duplicatedStatus) { // Correct early return
+                        return false;
+                    }
+                }
+            }
+            break;  // Exit the while loop after checking all sub-boxes
+        }
+
+        return duplicatedStatus;
+
+        function checkDup(nums) {
+            const duplicates = [];
+            nums.forEach((number) => { // forEach does not allow early exit
+                if (number !== '.') {
+                    if (duplicates.includes(number)) {
+                        return false; // This stops the current iteration, not the loop
+                    }
+                    duplicates.push(number);
+                }
+            });
+            return true;
+        }
+    }
+}
+
+
+//missing early return 
+
+which can be implemented by 
+ if (!duplicatedStatus) {
+        return false; // Missing early return if duplicates are found
+    }
+/* function checkDup(nums) {
+    const duplicates = [];
+    nums.forEach((number) => {
+        if (number !== '.') {
+            if (duplicates.includes(number)) {
+                console.log('Duplicate found:', number);
+                return false; // This only exits the current callback, not the loop
+            }
+            duplicates.push(number);
+        }
+    });
+    return true;
+}
+
+*/
