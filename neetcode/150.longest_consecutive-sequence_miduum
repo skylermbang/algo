@@ -4,49 +4,35 @@ class Solution {
      * @return {number}
      */
     longestConsecutive(nums) {
-        let consecutiveArray=[]
-        //remove duplicate
+        if (nums.length === 0) {
+            return 0;
+        }
+
+        // Remove duplicates and sort the array
         const uniqueNumbers = [...new Set(nums)];
+        uniqueNumbers.sort((a, b) => a - b);
 
-        //sort
-        uniqueNumbers.sort((a, b) => a - b); 
-       
-
-        //console.log(uniqueNumbers)
-
-        //if no length
-        if (uniqueNumbers.length === 0) {
-            return 0}
-   
-
-  // Variables to track the longest sequence
-        let longestStreak = 1;
-        let currentStreak = 1;
+        // Array to store all consecutive sequences
+        let sequences = [];
+        let currentSequence = [uniqueNumbers[0]];
 
         // Iterate through the sorted array
-        for(let i=1 ; i < uniqueNumbers.length; i++){
+        for (let i = 1; i < uniqueNumbers.length; i++) {
+            if (uniqueNumbers[i] === uniqueNumbers[i - 1] + 1) {
+              
+               currentSequence.push(uniqueNumbers[i])
+            } else {
+              sequences.push(currentSequence)
+              currentSequence = [uniqueNumbers[i]];
 
-            if(uniqueNumbers[i]===uniqueNumbers[i-1]+1){
-                currentStreak++
-            }else{
-                longestStreak = Math.max(longestStreak, currentStreak);
-                currentStreak=1
             }
         }
-    
-        longestStreak = Math.max(longestStreak, currentStreak);
-        return longestStreak;
-    //    for (let i = 1; i < uniqueNumbers.length; i++) {
-    //         if (uniqueNumbers[i] === uniqueNumbers[i - 1] +1) {
-    //             consecutiveArray[i].push(uniqueNumbers[i])
-    //         }
-    //     } 
-    //     if(uniqueNumbers[0]===consecutiveArray[0]-1){
-    //         consecutiveArray[i].push(uniqueNumbers[0])
-    //     }else{
-            
-    //     }
-    //     console.log(consecutiveArray[0].length)
-    //     return consecutiveArray.length
+        //this need to be manually added, becuase it wont be added cuz no iteration for else part to be excuted
+        sequences.push(currentSequence);
+        console.log(sequences)
+        let longestSequence = sequences.reduce((a, b) => (a.length > b.length ? a : b), []);
+        return longestSequence.length;
     }
 }
+
+
