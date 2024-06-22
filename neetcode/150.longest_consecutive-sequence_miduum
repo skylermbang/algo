@@ -1,0 +1,53 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    longestConsecutive(nums) {
+        let consecutiveArray=[]
+        //remove duplicate
+        const uniqueNumbers = [...new Set(nums)];
+
+        //sort
+        uniqueNumbers.sort((a, b) => a - b); 
+       
+
+        //console.log(uniqueNumbers)
+
+        //check the longest consecutive 
+        if (uniqueNumbers.length > 0) {
+    consecutiveArray.push(uniqueNumbers[0]);
+}
+
+  // Variables to track the longest sequence
+        let longestStreak = 1;
+        let currentStreak = 1;
+
+        // Iterate through the sorted array
+        for (let i = 1; i < uniqueNumbers.length; i++) {
+            if (uniqueNumbers[i] === uniqueNumbers[i - 1] + 1) {
+                // Continue the streak
+                currentStreak++;
+            } else {
+                // Reset the current streak
+                longestStreak = Math.max(longestStreak, currentStreak);
+                currentStreak = 1;
+            }
+        }
+     longestStreak = Math.max(longestStreak, currentStreak);
+
+        return longestStreak;
+    //    for (let i = 1; i < uniqueNumbers.length; i++) {
+    //         if (uniqueNumbers[i] === uniqueNumbers[i - 1] +1) {
+    //             consecutiveArray[i].push(uniqueNumbers[i])
+    //         }
+    //     } 
+    //     if(uniqueNumbers[0]===consecutiveArray[0]-1){
+    //         consecutiveArray[i].push(uniqueNumbers[0])
+    //     }else{
+            
+    //     }
+    //     console.log(consecutiveArray[0].length)
+    //     return consecutiveArray.length
+    }
+}
