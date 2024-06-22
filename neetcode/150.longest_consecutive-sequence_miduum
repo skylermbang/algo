@@ -14,28 +14,27 @@ class Solution {
 
         //console.log(uniqueNumbers)
 
-        //check the longest consecutive 
-        if (uniqueNumbers.length > 0) {
-    consecutiveArray.push(uniqueNumbers[0]);
-}
+        //if no length
+        if (uniqueNumbers.length === 0) {
+            return 0}
+   
 
   // Variables to track the longest sequence
         let longestStreak = 1;
         let currentStreak = 1;
 
         // Iterate through the sorted array
-        for (let i = 1; i < uniqueNumbers.length; i++) {
-            if (uniqueNumbers[i] === uniqueNumbers[i - 1] + 1) {
-                // Continue the streak
-                currentStreak++;
-            } else {
-                // Reset the current streak
+        for(let i=1 ; i < uniqueNumbers.length; i++){
+
+            if(uniqueNumbers[i]===uniqueNumbers[i-1]+1){
+                currentStreak++
+            }else{
                 longestStreak = Math.max(longestStreak, currentStreak);
-                currentStreak = 1;
+                currentStreak=1
             }
         }
-     longestStreak = Math.max(longestStreak, currentStreak);
-
+    
+        longestStreak = Math.max(longestStreak, currentStreak);
         return longestStreak;
     //    for (let i = 1; i < uniqueNumbers.length; i++) {
     //         if (uniqueNumbers[i] === uniqueNumbers[i - 1] +1) {
