@@ -1,0 +1,43 @@
+class Solution {
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
+    isPalindrome(s) {
+
+        //ignoreing casess , change everything all to lowercases,
+        //ignoring all the space , and comma ..etc
+        let newStr=[]
+        let compareStr=[]
+        let sNoWhitespace= s.replace(/\s/g, '').toLowerCase()
+
+        for(let i=0; i<sNoWhitespace.length; i++){
+            let char=sNoWhitespace[i]
+            if (char.match(/^[0-9a-z]+$/)){
+                newStr.push(char)
+            }
+        }
+        //convert original string into one single 
+        //check the reverse one if it match the original 
+        //console.log(newStr)
+
+
+
+        for(let j=newStr.length-1;j >=0 ; j--){
+            //console.log(j)
+            let char = newStr[j]
+            compareStr.push(char)
+        }
+        console.log(newStr)
+        console.log(compareStr)
+        console.log(newStr.join())
+        console.log("test")
+        console.log(compareStr.join())  
+
+        if(newStr.join()===compareStr.join()){
+            return true
+        }else{
+            return false
+        }
+    }
+}
