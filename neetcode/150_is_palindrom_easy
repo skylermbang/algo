@@ -19,21 +19,11 @@ class Solution {
         }
         //convert original string into one single 
         //check the reverse one if it match the original 
-        //console.log(newStr)
-
-
-
         for(let j=newStr.length-1;j >=0 ; j--){
             //console.log(j)
             let char = newStr[j]
             compareStr.push(char)
         }
-        console.log(newStr)
-        console.log(compareStr)
-        console.log(newStr.join())
-        console.log("test")
-        console.log(compareStr.join())  
-
         if(newStr.join()===compareStr.join()){
             return true
         }else{
@@ -41,3 +31,7 @@ class Solution {
         }
     }
 }
+
+
+// not a good way to solve
+// try to use two pointers 
