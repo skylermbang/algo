@@ -35,3 +35,39 @@ class Solution {
 
 // not a good way to solve
 // try to use two pointers 
+
+
+
+class Solution {
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
+    isPalindrome(s) {
+        //ignoreing casess , change everything all to lowercases,
+        //ignoring all the space , and comma ..etc
+        let newStr=[]
+        let compareStr=[]
+        let sNoWhitespace= s.replace(/\s/g, '').toLowerCase()
+        for(let i=0; i<sNoWhitespace.length; i++){
+            let char=sNoWhitespace[i]
+            if (char.match(/^[0-9a-z]+$/)){
+                newStr.push(char)
+            }
+        }
+        let k= newStr.length-1
+        let checker=true
+        for(let j=0; j< newStr.length ; j++){
+            let char1 = newStr[j]
+            let char2 = newStr[k]
+            console.log(char1,char2)
+            k=k-1
+            if(char1 !== char2){
+                checker=false
+            }
+        }
+        return checker
+    }
+}
+//using two pointers 
+// but for O(n) perspective first and second solution are the same O(n)
