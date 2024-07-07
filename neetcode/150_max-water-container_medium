@@ -1,0 +1,66 @@
+class Solution {
+    /**
+     * @param {number[]} heights
+     * @return {number}
+     */
+    maxArea(heights) {
+        let left=0
+        let right=heights.length-1
+        //iterate to check the possible left and right 
+        let max=0
+        let initial
+        while(left<right){
+            
+            let range= right - left 
+            let wall=Math.min(heights[left],heights[right])
+            initial = range * wall
+            max=Math.max(max,initial)
+            
+            let leftMove  ,rightMove 
+            leftMove=(right - (left+1 ))*Math.min(heights[left+1],heights[right])
+            rightMove=((right-1) - left )*Math.min(heights[left],heights[right-1])
+    
+            if(leftMove > rightMove){
+                left++
+            }else{
+                  right--
+            }
+        }
+            return max
+    }
+}
+
+/// this is not working because my approach is to predixct the next move based on the next potential area but this might misleading the future area.
+
+so it should be 
+
+
+class Solution {
+    /**
+     * @param {number[]} heights
+     * @return {number}
+     */
+    maxArea(heights) {
+        let left=0
+        let right=heights.length-1
+        //iterate to check the possible left and right 
+        let max=0
+        let initial
+        while(left<right){
+            
+            let range= right - left 
+            let wall=Math.min(heights[left],heights[right])
+            initial = range * wall
+            max=Math.max(max,initial)
+         
+            if(heights[left] < heights[right]){
+                left++
+            }else{
+                right--
+            }
+        }
+        return max
+    }
+}
+
+the pointer moving part can checking broader conditions.
