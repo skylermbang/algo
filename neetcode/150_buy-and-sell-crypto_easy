@@ -1,0 +1,26 @@
+class Solution {
+    /**
+     * @param {number} prices
+     * @return {number}
+     */
+    maxProfit(prices) {
+      //you iterate from the first date and sell each date in the future check the possible maxium profit
+    
+        let maximum =[]
+      for(let i=0; i< prices.length ; i++){
+            for (let j=i+1; j<prices.length ; j++){
+                console.log(i,j)
+                let profit = -1 * (prices[i]- prices[j])
+                //console.log(profit)
+                maximum.push(profit)
+            }
+      }
+     
+      let answer =Math.max(...maximum)
+      if (answer > 0){
+        return answer
+      }else{
+        return 0
+      }
+    }
+}
