@@ -1,0 +1,32 @@
+class Solution {
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    lengthOfLongestSubstring(s) {
+
+        let left = 0, right = 0;
+        let maxLength = 0;
+        let charMap = new Map(); 
+
+        while (right < s.length) {
+            //if you seen this already add one in the hashmap
+            if (charMap.has(s[right])) {
+                //decide left by current left and the hash map
+                //this left only increase if it sees the duplicate 
+                left = Math.max(left, charMap.get(s[right]) + 1);
+            }
+            //put the index number in the hash map
+            charMap.set(s[right], right);
+            //check the maximusm length
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+            console.log(charMap)
+            console.log(right,left, maxLength); 
+        }
+        return maxLength; 
+    }
+}
+
+
+//sliding window 
