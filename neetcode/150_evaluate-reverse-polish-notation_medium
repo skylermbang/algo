@@ -1,0 +1,72 @@
+class Solution {
+    /**
+     * @param {string[]} tokens
+     * @return {number}
+     */
+    evalRPN(tokens) {
+        let i =1
+        let expressions = [];
+        let final= 0
+        while (tokens.length > 1) {
+            console.log(tokens)
+            let last = tokens.pop();
+            if (last === "+" || last === "-" || last === "/" || last === "*") {
+                expressions[i] = last+tokens.pop()
+                console.log(expressions[i])
+                i++
+            }
+        }
+        if (tokens.length === 1){
+            let first = tokens.pop()
+
+            for(let j=i; j>0 ; j--){
+                final = +expressions[j]
+            }
+
+            console.log(first + final)
+            }
+        }
+    }
+
+
+
+    you have to use 
+
+    stack 
+
+
+    class Solution {
+        /**
+         * @param {string[]} tokens
+         * @return {number}
+         */
+        evalRPN(tokens) {
+            let expressions = []; 
+            for(let i=0; i<tokens.length ; i ++) {
+                let element=tokens[i]
+                if (element === "+" || element === "-" || element === "*" || element === "/") {
+                    // Perform the operation
+                    let result;
+                    let b = expressions.pop();  // Second operand
+                    let a = expressions.pop();  // First operand
+                    if (element === "+") {
+                        result = a + b;
+                    } else if (element === "-") {
+                        result = a - b;
+                    } else if (element === "*") {
+                        result = a * b;
+                    } else if (element === "/") {
+                        result = Math.trunc(a / b);  // Truncate for integer division
+                    }
+                    expressions.push(result)
+                } else {
+                    expressions.push(parseInt(element));
+                }
+            }
+            console.log(expressions)
+            // The final result will be the only value left in the stack
+            return expressions.pop();
+        }
+    }
+    
+    
