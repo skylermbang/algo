@@ -1,0 +1,47 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let index=0;
+    
+    for(let i=0; i<nums.length; i++){
+         let checker=false
+        for(let j=i+1; j<nums.length; j++){
+            if((nums[i]===nums[j])&&!checker){
+                nums[index]=nums[i]
+                index++
+                nums[index]=nums[j]
+                checker=true
+                break
+            }
+            if(!checker){
+                nums[index]=nums[i]
+                index++
+            }
+        }
+    }
+
+    // Skip the duplicate indices
+        while (i + 1 < nums.length && nums[i] === nums[i + 1]) {
+            i++;
+        }
+    return index
+};
+
+
+// this is every subsequent element which is not necessay 
+
+
+// better version and easier 
+// just  could not think of index <2 || nums[i]!==nums[index-2]
+var removeDuplicates = function(nums) {
+    let index=0;
+    for(let i=0; i<nums.length; i++){
+      if(index<2 ||nums[i]!==nums[index-2]){
+        nums[index]=nums[i]
+        index++
+      }
+    } 
+    return index
+};
