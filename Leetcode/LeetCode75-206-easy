@@ -1,0 +1,77 @@
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    
+    let index=0;
+    let array=[]
+    
+    let current = head
+    while(current!==null){
+        //console.log(current.val);
+         array.push(current.val);
+        current= current.next;
+        index++
+    }
+
+    let reversedHead =null;
+    let reversedCurrent = null;
+
+    console.log(array)
+    for(let i=index-1; i>=0; i--){
+   
+       let newNode = new ListNode(array[i])
+
+        if(!reversedHead){
+            reversedHead= newNode;
+            reversedCurrent = newNode;
+        }
+        else{
+            reversedCurrent.next = newNode;
+            reversedCurrent = newNode; 
+        }
+
+    }
+    
+    return reversedHead
+
+ };
+
+ // linked list 
+ // Dynamic size ; not like array  size is not fixed 
+ // Consisted of Node(data/next pointer)
+ //no direct access 
+ // singley linked / doubly linked / circular linked
+ //flexible memory usuage 
+ // efficient insertion and deltion 
+
+ //how do we reverse ? 
+ // how do we access ?
+
+
+ // better version :
+ function reverseList(head) {
+    let prev = null;
+    let current = head;
+    let next = null;
+    
+    while (current !== null) {
+       next = current.next;
+       current.next= prev;
+       prev = current;
+       current = next; 
+
+    }
+    
+    return prev; // New head of the reversed list
+}
