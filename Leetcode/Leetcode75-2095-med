@@ -1,0 +1,85 @@
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteMiddle = function(head) {
+    
+    //use two pointers to get the middle one
+    // one pointer being point to next
+    // the other pointer to pointing next.next 
+    let middle = 0;
+    //let current =head;
+    let pointer1 = head;
+    let pointer2 = head;
+
+    if(head.next === null){
+        return null
+    }
+    while(pointer2 !== null && pointer2.next !== null){
+        pointer1=pointer1.next;
+        pointer2=pointer2.next.next;
+        middle++
+    }
+    console.log(pointer1.val)
+
+   //once you got the middle one
+    //the one previous to the middle node poiont to after the middle one
+    console.log(head)
+   let current = head;
+   for(let i=0; i < middle-1 ; i++){
+       current = current.next;
+   }
+   console.log(current)
+   current.next = current.next.next
+   return head
+
+
+
+};
+
+//better version without loopting again
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteMiddle = function(head) {
+    
+    //use two pointers to get the middle one
+    // one pointer being point to next
+    // the other pointer to pointing next.next 
+    let middle = 0;
+    //let current =head;
+    let pointer1 = head;
+    let pointer2 = head;
+    let target = null;
+
+    if(head.next === null){
+        return null
+    }
+    while(pointer2 !== null && pointer2.next !== null){
+        target = pointer1
+        pointer1=pointer1.next;
+        pointer2=pointer2.next.next;
+        middle++
+    }
+    //console.log(taregetPrevious.val)
+   //once you got the middle one
+    //the one previous to the middle node poiont to after the middle one
+   target.next = pointer1.next;
+   return head
+};
