@@ -1,0 +1,48 @@
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
+//var gcdOfStrings = function(str1, str2) {
+    
+    //    let str1Array = str1.split('');
+    //    let str2Array = str2.split('');
+    //    let result = [];
+    
+    //    for(let i=0; i<str2Array.length ; i++){
+    
+    //     if(str1Array[i]===str2Array[i]){
+    //         console.log(str1Array[i])
+    //         result.push(str1Array[i])
+    //     }
+    //     console.log(result)
+    //    }
+    //    return result.join('')
+    
+    // main problem here is to get greatest common divisor (GCD) substring 
+    //determind the greatest common divisor (GCD) 
+var gcdOfStrings = function(str1, str2) {
+
+    // Helper function to calculate the GCD of two numbers using the Euclidean algorithm
+    function GCD(a, b){
+        if(b === 0) return a; // Base case: if b is 0, return a
+        return GCD(b, a % b); // Recursive call: gcd(b, a % b)
+    }
+
+    // Check if str1 and str2 have a common pattern
+    // If str1 + str2 is not equal to str2 + str1, then they don't share a repeating pattern
+    if((str1 + str2) !==(str2 + str1)){
+        return ""; // Return an empty string if they don't have a common pattern
+    }
+
+    //using GCD function to get the length 
+    // Calculate the GCD of the lengths of str1 and str2
+    let gcdLength = GCD(str1.length, str2.length)
+
+    //get the result from the string 1 
+    // Use the GCD length to get the largest common divisor substring from str1
+    let result = str1.substring(0,gcdLength)
+    
+    return result; // Return the common divisor substring
+};
+
