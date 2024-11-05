@@ -46,3 +46,16 @@ var gcdOfStrings = function(str1, str2) {
     return result; // Return the common divisor substring
 };
 
+// try 1379 , 2413
+
+//first attempt ; only check the
+//  Checks the Start of Each String
+//  It Doesn’t Check if the Pattern Repeats
+// Missing GCD concept;
+
+//so we need to 
+//Pattern Check with Concatenation:
+// check if str1 + str2 equals str2 + str1.
+//Using the GCD of the Lengths and extracting the substring
+
+
