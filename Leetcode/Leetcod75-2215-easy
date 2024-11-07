@@ -1,0 +1,38 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[][]}
+ */
+
+ //make them in hash tables 
+ // use hash function if there is already existing key then 
+ // that is duplicated
+ //why not just loop trough to find duplicated and remove ?
+var findDifference = function(nums1, nums2) {
+    let nums1Hash = new Set(nums1)
+    let nums2Hash = new Set(nums2)
+    let tempHash = new Set(nums1)
+
+
+    nums1Hash.forEach((number)=>{
+        if (nums2Hash.has(number)){
+            nums1Hash.delete(number)
+        }
+    })
+
+       nums2Hash.forEach((number)=>{
+        if (tempHash.has(number)){
+            nums2Hash.delete(number)
+        }
+    })
+
+    return [[...nums1Hash],[...nums2Hash]]
+
+
+};
+
+// to study:
+// how to loop the hash map
+// how to check the value of the hashmap
+// how to delete the hash map
+// changing hashmap to array
