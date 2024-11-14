@@ -1,0 +1,51 @@
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {boolean}
+ */
+var closeStrings = function(word1, word2) {
+    //if the length of the string are same 
+    //and also if the occurence of eash letters are same then true
+    if(word1.length !== word2.length){
+        return false
+    }
+
+    let word1Map = new Map()
+    let word2Map = new Map()
+
+    makeMap(word1,word1Map)
+    makeMap(word2,word2Map)
+
+
+    function makeMap(word, map){
+           for(let i=0; i< word.length; i++){
+        if(map.has(word[i])){
+            map.set(word[i],map.get(word[i])+1)
+        }else{
+            map.set(word[i],1)
+        }
+    }
+    }
+
+    console.log(word1Map)
+    console.log(word2Map)
+    
+    // check the two maps' size
+    if(word1Map.size !== word2Map.size){
+        return false
+    }
+    // if map has identical alphabet
+    for(let[key,value]of word1Map){
+        if(!word2Map.has(key)){
+            return false
+        }
+    }
+    
+    //check the frequency of each are same 
+    // sorting and check if they are the same. 
+    const word1Frequencies = [...word1Map.values()].sort((a, b) => a - b);
+    const word2Frequencies = [...word2Map.values()].sort((a, b) => a - b);
+
+return word1Frequencies.join('') === word2Frequencies.join('');
+
+};

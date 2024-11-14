@@ -13,13 +13,14 @@ var reverseVowels = function(s) {
     let j = 0
     console.log(vowels[j])
     
+    let sArray= s.split('')
     for(let i=0; i<s.length;i++){
         if(s[i]==='a'||s[i]==='i'||s[i]==='o'||s[i]==='e'||s[i]==='u'||s[i]==='A'||s[i]==='I'||s[i]==='O'||s[i]==='E'||s[i]==='U'){
-            s[i]=vowels[j]
+            sArray[i]=vowels[j]
             j++
         }
     }
     console.log(s)
-    return s
+    return sArray.join('')
 
 };

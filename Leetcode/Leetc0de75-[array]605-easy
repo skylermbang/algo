@@ -1,0 +1,45 @@
+/**
+ * @param {number[]} flowerbed
+ * @param {number} n
+ * @return {boolean}
+ */
+var canPlaceFlowers = function(flowerbed, n) {
+    // for(let i=0; i<flowerbed.length; i++){
+    //    if(flowerbed[i]===0){
+    //       if(i+3 <flowerbed.length){
+    //          if(flowerbed[i+3]!==1){
+    //       flowerbed[i+2]=1
+    //       n--
+    //       }
+    //     }
+           
+    //    }else if(flowerbed[i]===1){
+    //        if(i+3 <flowerbed.length){
+    //         if(flowerbed[i+3]!==1){
+    //                flowerbed[i+2]=1
+    //                   n--
+    //         }
+    //        }
+    //    }
+
+      
+    // }
+    //   if(n>0){
+    //     return false
+    //    }else{
+    //     return true}
+    if (n === 0) return true
+
+    for(let i=0; i<flowerbed.length; i++){
+        if((flowerbed[i]===0) &&
+        (i===0||flowerbed[i-1]!==1)&&
+        (i===flowerbed.length-1||flowerbed[i+1]!==1)
+        )
+            {    
+            flowerbed[i] = 1; 
+            n--; 
+            if (n === 0) return true
+        }
+    }
+    if(n >0) return false
+}
