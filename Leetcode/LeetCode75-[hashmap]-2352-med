@@ -1,0 +1,60 @@
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var equalPairs = function(grid) {
+    //to check if they are identical 
+    //use set to compare each row and colum
+    // c= column
+    // r= row
+    let count =0;
+
+    let rMap = new Map()
+    let cMap = new Map()
+
+
+   //row in Map
+    for (let i = 0; i < grid.length; i++) {
+        const rowKey = grid[i].join(',')
+        rMap.set(rowKey, (rMap.get(rowKey) || 0) + 1);
+    }
+
+    //column in Map
+    //     let cArray = [];
+    //     for (let i = 0; i < grid[0].length; i++) {
+    //         let cArrayElement = []; // Reset for each row
+    //         for (let j = 0; j < grid.length; j++) {
+    //             cArrayElement.push(grid[j][i]); 
+    //         }
+    //         rArray.push(rArrayElement); // Push the processed row into rArray
+    //     }
+    //  console.log(cArray)
+    let cArray = [];
+for (let j = 0; j < grid[0].length; j++) { // Outer loop iterates over columns
+    let cArrayElement = []; // Reset for each column
+    for (let i = 0; i < grid.length; i++) { // Inner loop iterates over rows
+        cArrayElement.push(grid[i][j]); // Add elements of the current column
+    }
+    cArray.push(cArrayElement); // Push the processed column into cArray
+}
+
+    for (let i = 0; i < cArray.length; i++) {
+        const columnKey = cArray[i].join(',')
+        cMap.set(columnKey, (cMap.get(columnKey) || 0) + 1);
+    }
+    console.log(cMap)
+
+// count the pairs 
+    for (let [key, rCount] of rMap) {
+        if (cMap.has(key)) {
+            const cCount = cMap.get(key);
+            count += rCount * cCount; 
+            // has tgo be multiple so each occurrence of the row can pair with each occurence of the column
+        }
+    }
+    return count
+};
+
+
+// key is how to calculate the occurance pairs
+// how to make the row element in to the array

@@ -47,3 +47,5 @@ table.set("scarlett", "27");
 
 table.display();  
 console.log(table.get("skyler"))
+
+
