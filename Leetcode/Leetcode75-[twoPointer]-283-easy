@@ -1,0 +1,55 @@
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    // find 0's index
+    // remove and readded in the array.
+    // this will take too much time 
+
+
+    // new method :
+    // two pointers
+    // if it nums[i] is not 0
+    // then 
+
+    let j = 0;
+    
+
+    for (let i=0; i<nums.length; i++){
+        if(nums[i]!==0){
+            [nums[i],nums[j]]= [nums[j],nums[i]]
+            j++
+        }
+       
+    }
+};
+
+//can invert the logic; 
+// for (let i = 0; i < nums.length; i++) {
+    //     if (nums[i] === 0) {
+    //         zeroCount++; // Increment the count of zeros
+    //     } else if (zeroCount > 0) {
+    //         // Shift non-zero elements forward by the number of zeros
+    //         nums[i - zeroCount] = nums[i];
+    //         nums[i] = 0; // Set current position to zero
+    //     }
+    // }
+// two pointers can be used to reduce the time complexity  normally 0(n^2 )=>O(N)
+// space optimiziation ;
+// simple logic
+
+//usually used in 
+// searching for pairs/triplets;
+// reordering
+// sliding windows
+// palindroms
+// find max/min
+// merging two arrays 
+
+//is destructuring assignment in JavaScript.
+ //It swaps the values of arr[i] and arr[j] without needing a temporary variable. 
+ //This is a concise way to swap two elements in an array.
+
+ // [ nums[i],nums[j]] = [nums[j],nums[i]]
+//
